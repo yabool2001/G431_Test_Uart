@@ -1,0 +1,8 @@
+astronode_transport.c:50:13:ascii_to_value	5
+astronode_transport.c:68:17:astronode_create_request_transport	2
+astronode_transport.c:97:24:astronode_decode_answer_transport	16
+astronode_transport.c:183:17:astronode_transport_send_receive	2
+astronode_transport.c:203:17:calculate_crc	2
+astronode_transport.c:216:13:check_for_error	21
+astronode_transport.c:272:24:receive_astronode_answer	8
+astronode_transport.c:320:13:uint8_to_ascii_buffer	1
