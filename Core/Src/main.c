@@ -60,6 +60,7 @@ static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
 void send_debug_logs ( char* ) ;
+void reset_astronode ( void ) ;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -97,8 +98,18 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  send_debug_logs ( "\nStart the application." );
-  reset_astronode();
+  send_debug_logs ( "\nStart the application." ) ;
+  reset_astronode () ;
+  // Send config write with:
+  // EVT pin shows sat ack
+  // No geolocation
+  // Ephemeris Enable
+  // Deep Sleep not used
+  // EVT pin shows Message Ack
+  // EVT pin shows Reset
+  // EVT pin shows downlink command available
+  // EVT pin did not show tx message pending (keep it to false in this example)
+  //astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -259,7 +270,13 @@ void send_debug_logs ( char* p_tx_buffer )
     HAL_UART_Transmit ( HUART_USB , ( uint8_t* ) p_tx_buffer , length , 1000 ) ;
     HAL_UART_Transmit ( HUART_USB , ( uint8_t* ) "\n" , 1 , 1000 ) ;
 }
-
+void reset_astronode(void)
+{
+    HAL_GPIO_WritePin ( ASTRO_RESET_GPIO_Port , ASTRO_RESET_Pin , GPIO_PIN_SET ) ;
+    HAL_Delay ( 1 ) ;
+    HAL_GPIO_WritePin ( ASTRO_RESET_GPIO_Port , ASTRO_RESET_Pin , GPIO_PIN_RESET ) ;
+    HAL_Delay ( 250 ) ;
+}
 /* USER CODE END 4 */
 
 /**

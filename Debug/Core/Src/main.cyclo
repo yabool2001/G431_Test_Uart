@@ -1,6 +1,7 @@
-main.c:74:5:main	1
-main.c:119:6:SystemClock_Config	3
-main.c:166:13:MX_USART2_UART_Init	5
-main.c:214:13:MX_GPIO_Init	1
-main.c:249:6:send_debug_logs	2
-main.c:269:6:Error_Handler	1
+main.c:75:5:main	1
+main.c:130:6:SystemClock_Config	3
+main.c:177:13:MX_USART2_UART_Init	5
+main.c:225:13:MX_GPIO_Init	1
+main.c:260:6:send_debug_logs	2
+main.c:273:6:reset_astronode	1
+main.c:286:6:Error_Handler	1
