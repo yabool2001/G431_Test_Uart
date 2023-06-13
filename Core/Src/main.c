@@ -48,19 +48,28 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-
+uint16_t g_payload_id_counter = 0;
+uint8_t g_number_of_message_to_send = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
+static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 void send_debug_logs ( char* ) ;
 void reset_astronode ( void ) ;
+void send_astronode_request ( uint8_t* , uint32_t ) ;
+uint32_t get_systick ( void ) ;
+bool is_systick_timeout_over ( uint32_t , uint16_t ) ;
+bool is_astronode_character_received ( uint8_t* ) ;
+bool is_evt_pin_high ( void ) ;
+bool is_message_available ( void ) ;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -97,9 +106,13 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   send_debug_logs ( "\nStart the application." ) ;
   reset_astronode () ;
+  uint32_t print_housekeeping_timer = get_systick () ;
+  astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
+  astronode_send_cfg_sr () ;
   // Send config write with:
   // EVT pin shows sat ack
   // No geolocation
@@ -116,6 +129,46 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  if (is_evt_pin_high())
+	  {
+		  send_debug_logs("Evt pin is high.");
+		  astronode_send_evt_rr();
+		  if (is_sak_available())
+		  {
+			  astronode_send_sak_rr();
+			  astronode_send_sak_cr();
+			  send_debug_logs("Message has been acknowledged.");
+			  astronode_send_per_rr();
+		  }
+		  if (is_astronode_reset())
+		  {
+			  send_debug_logs("Terminal has been reset.");
+			  astronode_send_res_cr();
+		  }
+		  if (is_command_available())
+		  {
+			  send_debug_logs("Unicast command is available");
+			  astronode_send_cmd_rr();
+			  astronode_send_cmd_cr();
+		  }
+	  }
+	  else if ( is_message_available () )
+	  {
+		  send_debug_logs("The button is pressed.");
+
+		  g_payload_id_counter++;
+		  char payload[ASTRONODE_APP_PAYLOAD_MAX_LEN_BYTES] = {0};
+
+		  sprintf(payload, "Test message %d", g_payload_id_counter);
+
+		  astronode_send_pld_er(g_payload_id_counter, payload, strlen(payload));
+	  }
+
+	  if (get_systick() - print_housekeeping_timer > 60000)
+	  {
+		  astronode_send_per_rr();
+		  print_housekeeping_timer = get_systick();
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -167,6 +220,54 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 9600;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart1.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetTxFifoThreshold(&huart1, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetRxFifoThreshold(&huart1, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_DisableFifoMode(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
 }
 
 /**
@@ -233,17 +334,23 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(ASTRO_RESET_GPIO_Port, ASTRO_RESET_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, ASTRO_RESET_Pin|ASTRO_WAKEUP_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : ASTRO_RESET_Pin */
-  GPIO_InitStruct.Pin = ASTRO_RESET_Pin;
+  /*Configure GPIO pins : ASTRO_RESET_Pin ASTRO_WAKEUP_Pin */
+  GPIO_InitStruct.Pin = ASTRO_RESET_Pin|ASTRO_WAKEUP_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(ASTRO_RESET_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : ASTRO_EVENT_EXTI12_Pin */
+  GPIO_InitStruct.Pin = ASTRO_EVENT_EXTI12_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(ASTRO_EVENT_EXTI12_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LD2_Pin */
   GPIO_InitStruct.Pin = LD2_Pin;
@@ -270,12 +377,47 @@ void send_debug_logs ( char* p_tx_buffer )
     HAL_UART_Transmit ( HUART_USB , ( uint8_t* ) p_tx_buffer , length , 1000 ) ;
     HAL_UART_Transmit ( HUART_USB , ( uint8_t* ) "\n" , 1 , 1000 ) ;
 }
-void reset_astronode(void)
+void reset_astronode ( void )
 {
     HAL_GPIO_WritePin ( ASTRO_RESET_GPIO_Port , ASTRO_RESET_Pin , GPIO_PIN_SET ) ;
     HAL_Delay ( 1 ) ;
     HAL_GPIO_WritePin ( ASTRO_RESET_GPIO_Port , ASTRO_RESET_Pin , GPIO_PIN_RESET ) ;
     HAL_Delay ( 250 ) ;
+}
+void send_astronode_request ( uint8_t* p_tx_buffer , uint32_t length )
+{
+    send_debug_logs ( "Message sent to the Astronode --> " ) ;
+    send_debug_logs ( ( char* ) p_tx_buffer ) ;
+
+    HAL_UART_Transmit ( HUART_ASTRO , p_tx_buffer , length , 1000 ) ;
+}
+uint32_t get_systick ( void )
+{
+    return HAL_GetTick();
+}
+bool is_systick_timeout_over ( uint32_t starting_value , uint16_t duration )
+{
+    return ( get_systick () - starting_value > duration ) ? true : false ;
+}
+bool is_astronode_character_received ( uint8_t* p_rx_char )
+{
+    return ( HAL_UART_Receive ( HUART_ASTRO , p_rx_char , 1 , 100 ) == HAL_OK ? true : false ) ;
+}
+bool is_evt_pin_high ( void )
+{
+    return ( HAL_GPIO_ReadPin ( ASTRO_EVENT_EXTI12_GPIO_Port , ASTRO_EVENT_EXTI12_Pin ) == GPIO_PIN_SET ? true : false ) ;
+}
+bool is_message_available ( void )
+{
+    if ( g_number_of_message_to_send > 0 )
+    {
+        g_number_of_message_to_send--;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 /* USER CODE END 4 */
 

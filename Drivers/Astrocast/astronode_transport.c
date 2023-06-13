@@ -189,7 +189,6 @@ return_status_t astronode_transport_send_receive(astronode_app_msg_t *p_request,
     uint16_t request_length = astronode_create_request_transport(p_request, request_transport);
 
     send_astronode_request(request_transport, request_length);
-
     if(receive_astronode_answer(answer_transport, &answer_length) == RS_SUCCESS)
     {
         return astronode_decode_answer_transport(answer_transport, answer_length, p_answer);

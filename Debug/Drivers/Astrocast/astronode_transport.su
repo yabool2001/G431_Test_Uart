@@ -2,7 +2,7 @@
 ../Drivers/Astrocast/astronode_transport.c:68:17:astronode_create_request_transport	24	static
 ../Drivers/Astrocast/astronode_transport.c:97:24:astronode_decode_answer_transport	40	static
 ../Drivers/Astrocast/astronode_transport.c:183:17:astronode_transport_send_receive	816	static
-../Drivers/Astrocast/astronode_transport.c:203:17:calculate_crc	24	static
-../Drivers/Astrocast/astronode_transport.c:216:13:check_for_error	24	static
-../Drivers/Astrocast/astronode_transport.c:272:24:receive_astronode_answer	32	static
-../Drivers/Astrocast/astronode_transport.c:320:13:uint8_to_ascii_buffer	16	static
+../Drivers/Astrocast/astronode_transport.c:202:17:calculate_crc	24	static
+../Drivers/Astrocast/astronode_transport.c:215:13:check_for_error	24	static
+../Drivers/Astrocast/astronode_transport.c:271:24:receive_astronode_answer	32	static
+../Drivers/Astrocast/astronode_transport.c:319:13:uint8_to_ascii_buffer	16	static

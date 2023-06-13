@@ -59,10 +59,14 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define ASTRO_RESET_Pin GPIO_PIN_0
 #define ASTRO_RESET_GPIO_Port GPIOA
+#define ASTRO_WAKEUP_Pin GPIO_PIN_1
+#define ASTRO_WAKEUP_GPIO_Port GPIOA
 #define USART2_TX_Pin GPIO_PIN_2
 #define USART2_TX_GPIO_Port GPIOA
 #define USART2_RX_Pin GPIO_PIN_3
 #define USART2_RX_GPIO_Port GPIOA
+#define ASTRO_EVENT_EXTI12_Pin GPIO_PIN_12
+#define ASTRO_EVENT_EXTI12_GPIO_Port GPIOA
 #define T_SWDIO_Pin GPIO_PIN_13
 #define T_SWDIO_GPIO_Port GPIOA
 #define T_SWCLK_Pin GPIO_PIN_14
