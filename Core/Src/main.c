@@ -52,8 +52,12 @@ UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-uint16_t g_payload_id_counter = 0;
-uint8_t g_number_of_message_to_send = 0;
+uint16_t	g_payload_id_counter = 0 ;
+uint8_t		g_number_of_message_to_send = 0 ;
+uint32_t	print_housekeeping_timer = 0 ;
+HAL_StatusTypeDef result = HAL_ERROR ; // HAL_OK = 0x00, HAL_ERROR = 0x01, HAL_BUSY = 0x02, HAL_TIMEOUT = 0x03
+GPIO_PinState astro_reset_state = GPIO_PIN_SET ; //GPIO_PIN_RESET = 0U, GPIO_PIN_SET
+GPIO_PinState astro_event_state = GPIO_PIN_SET ; //GPIO_PIN_RESET = 0U, GPIO_PIN_SET
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -110,7 +114,50 @@ int main(void)
   /* USER CODE BEGIN 2 */
   send_debug_logs ( "\nStart the application." ) ;
   reset_astronode () ;
-  uint32_t print_housekeeping_timer = get_systick () ;
+
+  uint8_t cfg_fr[] = { 0x02 , 0x31 , 0x30 , 0x45 , 0x30 , 0x45 , 0x33 , 0x03 } ;
+  uint8_t cfg_sa[100] ;
+  uint8_t cfg_sa_expected[] = { 0x02 , 0x39 , 0x31 , 0x36 , 0x38 , 0x37 , 0x32 , 0x03 } ;
+
+  uint8_t cfg_rr[] = { 0x02 , 0x31 , 0x35 , 0x36 , 0x34 , 0x41 , 0x33 , 0x03 } ;
+  uint8_t cfg_ra[100] ;
+  uint8_t cfg_ra_expected[] = { 0x02 , 0x39 , 0x35 , 0x30 , 0x33 , 0x30 , 0x31 , 0x30 , 0x32 , 0x30 , 0x31 , 0x30 , 0x30 , 0x00 , 0x35 , 0x30 , 0x30 , 0x30 , 0x31 , 0x32 , 0x36 , 0x32 , 0x39 , 0x03 } ;
+
+  astro_reset_state = HAL_GPIO_ReadPin ( GPIOA , ASTRO_RESET_Pin ) ;
+  astro_event_state = HAL_GPIO_ReadPin ( ASTRO_EVENT_EXTI12_GPIO_Port , ASTRO_EVENT_EXTI12_Pin ) ;
+  HAL_Delay ( 1000 ) ;
+
+  result = HAL_UART_Transmit ( HUART_ASTRO , cfg_fr , 8 , 1000 ) ;
+  result = HAL_UART_Receive ( HUART_ASTRO , cfg_sa , 8 , 1000 ) ;
+  if ( strncmp( cfg_sa , cfg_sa_expected , sizeof ( cfg_sa_expected ) ) == 0 )
+  	send_debug_logs ( "cfg_sa ok." ) ;
+  else
+  	send_debug_logs ( "cfg_sa not ok." ) ;
+  result = HAL_UART_Transmit ( HUART_ASTRO , cfg_fr , 8 , 1000 ) ;
+  result = HAL_UART_Receive ( HUART_ASTRO , cfg_sa , 8 , 1000 ) ;
+  if ( strncmp( cfg_sa , cfg_sa_expected , sizeof ( cfg_sa_expected ) ) == 0 )
+	send_debug_logs ( "cfg_sa ok." ) ;
+  else
+	send_debug_logs ( "cfg_sa not ok." ) ;
+  result = HAL_UART_Transmit ( HUART_ASTRO , cfg_rr , 8 , 1000 ) ;
+  result = HAL_UART_Receive ( HUART_ASTRO , cfg_ra , 24 , 1000 ) ;
+  if ( strncmp( cfg_ra , cfg_ra_expected , sizeof ( cfg_ra_expected ) ) == 0 )
+    send_debug_logs ( "cfg_ra ok." ) ;
+  else
+    send_debug_logs ( "cfg_ra not ok." ) ;
+  //result = HAL_UART_Transmit ( HUART_ASTRO , cfg_read_request , 8 , 1000 ) ;
+  //result = HAL_UART_Receive ( HUART_ASTRO , cfg , 24 , 1000 ) ;
+
+
+  print_housekeeping_timer = get_systick () ;
+
+  // application cfg
+  //astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
+  //default cfg
+  //astronode_send_cfg_wr ( true , false , true, false , true , false , true , false ) ;
+  //test
+  HAL_Delay ( 1000 ) ;
+  astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
   astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
   astronode_send_cfg_sr () ;
   // Send config write with:
@@ -154,20 +201,20 @@ int main(void)
 	  }
 	  else if ( is_message_available () )
 	  {
-		  send_debug_logs("The button is pressed.");
+		  send_debug_logs ( "The button is pressed." ) ;
 
 		  g_payload_id_counter++;
 		  char payload[ASTRONODE_APP_PAYLOAD_MAX_LEN_BYTES] = {0};
 
-		  sprintf(payload, "Test message %d", g_payload_id_counter);
+		  sprintf ( payload , "Test message %d" , g_payload_id_counter ) ;
 
-		  astronode_send_pld_er(g_payload_id_counter, payload, strlen(payload));
+		  astronode_send_pld_er ( g_payload_id_counter , payload , strlen ( payload ) ) ;
 	  }
 
-	  if (get_systick() - print_housekeeping_timer > 60000)
+	  if ( get_systick () - print_housekeeping_timer > 60000)
 	  {
-		  astronode_send_per_rr();
-		  print_housekeeping_timer = get_systick();
+		  astronode_send_per_rr () ;
+		  print_housekeeping_timer = get_systick () ;
 	  }
     /* USER CODE END WHILE */
 
