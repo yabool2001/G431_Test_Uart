@@ -126,6 +126,8 @@ int main(void)
   astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
   astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
   astronode_send_cfg_sr () ;
+  astronode_send_mpn_rr () ;
+  astronode_send_msn_rr () ;
   /* USER CODE END 2 */
 
   /* Infinite loop */
