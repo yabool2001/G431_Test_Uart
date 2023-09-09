@@ -84,3 +84,81 @@
 [2023-09-09 11:58:24.426] Message received from the Astronode <-- 
 [2023-09-09 11:58:24.430] A50100C1A9
 [2023-09-09 11:58:24.432] Payload was successfully queued.
+[2023-09-09 12:28:23.918] g_number_of_message_to_send++
+[2023-09-09 12:28:23.922] Message sent to the Astronode --> 
+[2023-09-09 12:28:23.928] 67B1FD
+[2023-09-09 12:28:24.118] Message received from the Astronode <-- 
+[2023-09-09 12:28:24.123] E70104650000000204CA00000003046500000004048D0100000504000000000604000000000704000000000804010000000904000000000A04000000000B04000000000C04000000000D04000000000E04000000002D4D
+[2023-09-09 12:28:24.138] PC sat det phase count is: 
+[2023-09-09 12:28:24.141] 101
+[2023-09-09 12:28:24.141] PC sat det operation count is: 
+[2023-09-09 12:28:24.143] 202
+[2023-09-09 12:28:24.145] PC signalling demod phase count is: 
+[2023-09-09 12:28:24.149] 101
+[2023-09-09 12:28:24.149] PC signalling demod attemps count is: 
+[2023-09-09 12:28:24.151] 397
+[2023-09-09 12:28:24.151] PC signalling demod successes count is: 
+[2023-09-09 12:28:24.154] 0
+[2023-09-09 12:28:24.154] PC ack demod attemps count is: 
+[2023-09-09 12:28:24.157] 0
+[2023-09-09 12:28:24.158] PC ack demod success count is: 
+[2023-09-09 12:28:24.160] 0
+[2023-09-09 12:28:24.160] PC queued message count is: 
+[2023-09-09 12:28:24.163] 1
+[2023-09-09 12:28:24.164] PC dequeued unacked message count is: 
+[2023-09-09 12:28:24.168] 0
+[2023-09-09 12:28:24.168] PC acked message count is: 
+[2023-09-09 12:28:24.170] 0
+[2023-09-09 12:28:24.170] PC sent frag count is: 
+[2023-09-09 12:28:24.171] 0
+[2023-09-09 12:28:24.171] PC ack frag count is: 
+[2023-09-09 12:28:24.174] 0
+[2023-09-09 12:28:24.174] PC unicast demod attempt count is: 
+[2023-09-09 12:28:24.178] 0
+[2023-09-09 12:28:24.178] PC unicast demod success count is: 
+[2023-09-09 12:28:24.180] 0
+[2023-09-09 12:28:24.180] The button is pressed.
+[2023-09-09 12:28:24.182] Message sent to the Astronode --> 
+[2023-09-09 12:28:24.186] 250200547361744D6573736167652032E80D
+[2023-09-09 12:28:24.241] Message received from the Astronode <-- 
+[2023-09-09 12:28:24.247] A5020092FC
+[2023-09-09 12:28:24.247] Payload was successfully queued.
+[2023-09-09 12:58:23.796] g_number_of_message_to_send++
+[2023-09-09 12:58:23.799] Message sent to the Astronode --> 
+[2023-09-09 12:58:23.803] 67B1FD
+[2023-09-09 12:58:23.995] Message received from the Astronode <-- 
+[2023-09-09 12:58:24.013] E70104CA0000000204940100000304CA00000004041D0300000504000000000604000000000704000000000804020000000904000000000A04000000000B04000000000C04000000000D04000000000E040000000008DD
+[2023-09-09 12:58:24.016] PC sat det phase count is: 
+[2023-09-09 12:58:24.018] 202
+[2023-09-09 12:58:24.018] PC sat det operation count is: 
+[2023-09-09 12:58:24.023] 404
+[2023-09-09 12:58:24.023] PC signalling demod phase count is: 
+[2023-09-09 12:58:24.028] 202
+[2023-09-09 12:58:24.028] PC signalling demod attemps count is: 
+[2023-09-09 12:58:24.032] 797
+[2023-09-09 12:58:24.032] PC signalling demod successes count is: 
+[2023-09-09 12:58:24.035] 0
+[2023-09-09 12:58:24.035] PC ack demod attemps count is: 
+[2023-09-09 12:58:24.039] 0
+[2023-09-09 12:58:24.039] PC ack demod success count is: 
+[2023-09-09 12:58:24.045] 0
+[2023-09-09 12:58:24.045] PC queued message count is: 
+[2023-09-09 12:58:24.045] 2
+[2023-09-09 12:58:24.045] PC dequeued unacked message count is: 
+[2023-09-09 12:58:24.047] 0
+[2023-09-09 12:58:24.047] PC acked message count is: 
+[2023-09-09 12:58:24.047] 0
+[2023-09-09 12:58:24.047] PC sent frag count is: 
+[2023-09-09 12:58:24.051] 0
+[2023-09-09 12:58:24.051] PC ack frag count is: 
+[2023-09-09 12:58:24.054] 0
+[2023-09-09 12:58:24.054] PC unicast demod attempt count is: 
+[2023-09-09 12:58:24.057] 0
+[2023-09-09 12:58:24.057] PC unicast demod success count is: 
+[2023-09-09 12:58:24.060] 0
+[2023-09-09 12:58:24.060] The button is pressed.
+[2023-09-09 12:58:24.070] Message sent to the Astronode --> 
+[2023-09-09 12:58:24.070] 250300547361744D657373616765203335B3
+[2023-09-09 12:58:24.119] Message received from the Astronode <-- 
+[2023-09-09 12:58:24.126] A50300A3CF
+[2023-09-09 12:58:24.126] Payload was successfully queued.
