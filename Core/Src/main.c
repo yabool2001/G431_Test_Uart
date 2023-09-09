@@ -58,6 +58,7 @@ uint32_t	print_housekeeping_timer = 0 ;
 HAL_StatusTypeDef result = HAL_ERROR ; // HAL_OK = 0x00, HAL_ERROR = 0x01, HAL_BUSY = 0x02, HAL_TIMEOUT = 0x03
 GPIO_PinState astro_reset_state = GPIO_PIN_SET ; //GPIO_PIN_RESET = 0U, GPIO_PIN_SET
 GPIO_PinState astro_event_state = GPIO_PIN_SET ; //GPIO_PIN_RESET = 0U, GPIO_PIN_SET
+char payload[ASTRONODE_APP_PAYLOAD_MAX_LEN_BYTES] = {0};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -113,18 +114,14 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   send_debug_logs ( "\nStart the application." ) ;
+  send_debug_logs ( "\nW produkcji nie zmieniaj MCU ani przyporzadkowania pinow PA9-12.\n" ) ;
   reset_astronode () ;
 
   print_housekeeping_timer = get_systick () ;
 
-  // application cfg
+  //HAL_Delay ( 1000 ) ;
+  astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
   //astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
-  //default cfg
-  //astronode_send_cfg_wr ( true , false , true, false , true , false , true , false ) ;
-  //test
-  HAL_Delay ( 1000 ) ;
-  astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
-  astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
   astronode_send_cfg_sr () ;
   astronode_send_mpn_rr () ;
   astronode_send_msn_rr () ;
@@ -134,11 +131,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  /*
 	  if (is_evt_pin_high())
 	  {
 		  send_debug_logs("Evt pin is high.");
 		  astronode_send_evt_rr();
+
 		  if (is_sak_available())
 		  {
 			  astronode_send_sak_rr();
@@ -146,11 +143,13 @@ int main(void)
 			  send_debug_logs("Message has been acknowledged.");
 			  astronode_send_per_rr();
 		  }
+
 		  if (is_astronode_reset())
 		  {
 			  send_debug_logs("Terminal has been reset.");
 			  astronode_send_res_cr();
 		  }
+
 		  if (is_command_available())
 		  {
 			  send_debug_logs("Unicast command is available");
@@ -165,17 +164,19 @@ int main(void)
 		  g_payload_id_counter++;
 		  char payload[ASTRONODE_APP_PAYLOAD_MAX_LEN_BYTES] = {0};
 
-		  sprintf ( payload , "Test message %d" , g_payload_id_counter ) ;
+		  sprintf ( payload , "TsatMessage %d" , g_payload_id_counter ) ;
 
 		  astronode_send_pld_er ( g_payload_id_counter , payload , strlen ( payload ) ) ;
 	  }
 
-	  if ( get_systick () - print_housekeeping_timer > 60000)
+	  if ( get_systick () - print_housekeeping_timer > 1800000 /*60000*/ )
 	  {
+		  g_number_of_message_to_send++ ;
+		  send_debug_logs("g_number_of_message_to_send++");
 		  astronode_send_per_rr () ;
 		  print_housekeeping_timer = get_systick () ;
 	  }
-	  */
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -341,13 +342,13 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, ASTRO_RESET_Pin|ASTRO_WAKEUP_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, ASTRO_WAKEUP_Pin|ASTRO_RESET_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : ASTRO_RESET_Pin ASTRO_WAKEUP_Pin */
-  GPIO_InitStruct.Pin = ASTRO_RESET_Pin|ASTRO_WAKEUP_Pin;
+  /*Configure GPIO pins : ASTRO_WAKEUP_Pin ASTRO_RESET_Pin */
+  GPIO_InitStruct.Pin = ASTRO_WAKEUP_Pin|ASTRO_RESET_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

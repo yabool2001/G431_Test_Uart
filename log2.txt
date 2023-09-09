@@ -1,0 +1,86 @@
+
+[2023-09-09 11:28:21.806] 
+[2023-09-09 11:28:21.806] Start the application.
+[2023-09-09 11:28:21.826] 
+[2023-09-09 11:28:21.826] W produkcji nie zmieniaj MCU ani przyporzadkowania pinow PA9-12.
+[2023-09-09 11:28:21.837] 
+[2023-09-09 11:28:22.065] Message sent to the Astronode --> 
+[2023-09-09 11:28:22.068] 0505000792A3
+[2023-09-09 11:28:22.960] 
+[2023-09-09 11:28:22.962] Start the application.
+[2023-09-09 11:28:22.963] 
+[2023-09-09 11:28:22.963] W produkcji nie zmieniaj MCU ani przyporzadkowania pinow PA9-12.
+[2023-09-09 11:28:22.969] 
+[2023-09-09 11:28:23.473] Message sent to the Astronode --> 
+[2023-09-09 11:28:23.477] 0505000792A3
+[2023-09-09 11:28:23.501] Message received from the Astronode <-- 
+[2023-09-09 11:28:23.505] 85DD20
+[2023-09-09 11:28:23.506] Astronode configuration successfully set.
+[2023-09-09 11:28:23.508] Message sent to the Astronode --> 
+[2023-09-09 11:28:23.512] 10C1F3
+[2023-09-09 11:28:23.531] Message received from the Astronode <-- 
+[2023-09-09 11:28:23.534] 904962
+[2023-09-09 11:28:23.535] Astronode configuration successfully saved in NVM.
+[2023-09-09 11:28:23.540] Message sent to the Astronode --> 
+[2023-09-09 11:28:23.543] 1BAA42
+[2023-09-09 11:28:23.594] Message received from the Astronode <-- 
+[2023-09-09 11:28:23.598] 9B41535435303134372D30310000000000D272
+[2023-09-09 11:28:23.602] Module's product number is:
+[2023-09-09 11:28:23.604] AST50147-01
+[2023-09-09 11:28:23.605] Message sent to the Astronode --> 
+[2023-09-09 11:28:23.609] 1A8B52
+[2023-09-09 11:28:23.659] Message received from the Astronode <-- 
+[2023-09-09 11:28:23.664] 9A414E5332323132464C303030303235310969
+[2023-09-09 11:28:23.666] Module's Serial Number is:
+[2023-09-09 11:28:23.668] ANS2212FL000025
+[2023-09-09 11:28:23.670] Evt pin is high.
+[2023-09-09 11:28:23.672] Message sent to the Astronode --> 
+[2023-09-09 11:28:23.675] 65F3DD
+[2023-09-09 11:28:23.694] Message received from the Astronode <-- 
+[2023-09-09 11:28:23.698] E5020AD2
+[2023-09-09 11:28:23.700] Astronode has reset.
+[2023-09-09 11:28:23.701] Terminal has been reset.
+[2023-09-09 11:28:23.703] Message sent to the Astronode --> 
+[2023-09-09 11:28:23.706] 55A0EB
+[2023-09-09 11:28:23.724] Message received from the Astronode <-- 
+[2023-09-09 11:28:23.728] D5287A
+[2023-09-09 11:28:23.730] The reset has been cleared.
+[2023-09-09 11:58:24.104] g_number_of_message_to_send++
+[2023-09-09 11:58:24.106] Message sent to the Astronode --> 
+[2023-09-09 11:58:24.110] 67B1FD
+[2023-09-09 11:58:24.302] Message received from the Astronode <-- 
+[2023-09-09 11:58:24.307] E70104000000000204000000000304000000000404000000000504000000000604000000000704000000000804000000000904000000000A04000000000B04000000000C04000000000D04000000000E0400000000B02C
+[2023-09-09 11:58:24.322] PC sat det phase count is: 
+[2023-09-09 11:58:24.328] 0
+[2023-09-09 11:58:24.328] PC sat det operation count is: 
+[2023-09-09 11:58:24.330] 0
+[2023-09-09 11:58:24.330] PC signalling demod phase count is: 
+[2023-09-09 11:58:24.333] 0
+[2023-09-09 11:58:24.333] PC signalling demod attemps count is: 
+[2023-09-09 11:58:24.335] 0
+[2023-09-09 11:58:24.335] PC signalling demod successes count is: 
+[2023-09-09 11:58:24.338] 0
+[2023-09-09 11:58:24.340] PC ack demod attemps count is: 
+[2023-09-09 11:58:24.343] 0
+[2023-09-09 11:58:24.343] PC ack demod success count is: 
+[2023-09-09 11:58:24.347] 0
+[2023-09-09 11:58:24.347] PC queued message count is: 
+[2023-09-09 11:58:24.348] 0
+[2023-09-09 11:58:24.348] PC dequeued unacked message count is: 
+[2023-09-09 11:58:24.351] 0
+[2023-09-09 11:58:24.351] PC acked message count is: 
+[2023-09-09 11:58:24.353] 0
+[2023-09-09 11:58:24.355] PC sent frag count is: 
+[2023-09-09 11:58:24.356] 0
+[2023-09-09 11:58:24.356] PC ack frag count is: 
+[2023-09-09 11:58:24.359] 0
+[2023-09-09 11:58:24.359] PC unicast demod attempt count is: 
+[2023-09-09 11:58:24.362] 0
+[2023-09-09 11:58:24.362] PC unicast demod success count is: 
+[2023-09-09 11:58:24.365] 0
+[2023-09-09 11:58:24.365] The button is pressed.
+[2023-09-09 11:58:24.367] Message sent to the Astronode --> 
+[2023-09-09 11:58:24.370] 250100547361744D6573736167652031AEDE
+[2023-09-09 11:58:24.426] Message received from the Astronode <-- 
+[2023-09-09 11:58:24.430] A50100C1A9
+[2023-09-09 11:58:24.432] Payload was successfully queued.
