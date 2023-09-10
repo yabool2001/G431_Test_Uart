@@ -96,6 +96,10 @@ void astronode_send_cmd_cr(void);
 
 void astronode_send_cmd_rr(void);
 
+// Added by yabool2001 2023.09.10:
+void astronode_send_val_wr ( void ) ;
+void astronode_send_adc_rr ( void ) ;
+
 /**
  * @brief Check is an acknowledgment has been read.
  */

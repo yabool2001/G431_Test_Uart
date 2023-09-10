@@ -1007,6 +1007,54 @@ void astronode_send_cmd_rr(void)
     }
 }
 
+// Added by yabool2001 2023.09.10:
+void astronode_send_val_wr ( void )
+{
+	astronode_app_msg_t request = {0} ;
+	astronode_app_msg_t answer = {0} ;
+
+	request.op_code = ASTRONODE_OP_CODE_VAL_WR ;
+
+	if ( astronode_transport_send_receive ( &request , &answer ) == RS_SUCCESS )
+	{
+		if ( answer.op_code == ASTRONODE_OP_CODE_VAL_WA )
+		{
+			uint32_t val_mode = answer.p_payload[0] ;
+			char str[ASTRONODE_UART_DEBUG_BUFFER_LENGTH] ;
+			sprintf ( str , "Validation mode: %lds.", val_mode ) ;
+			send_debug_logs ( str ) ;
+		}
+		else
+		{
+			send_debug_logs("Failed to write validation mode.");
+		}
+	}
+}
+
+void astronode_send_adc_rr ( void )
+// Validation mode must be enabled to use this command.
+{
+    astronode_app_msg_t request = {0} ;
+    astronode_app_msg_t answer = {0} ;
+
+    request.op_code = ASTRONODE_OP_CODE_ADC_RR ;
+
+    if ( astronode_transport_send_receive ( &request , &answer ) == RS_SUCCESS )
+    {
+        if ( answer.op_code == ASTRONODE_OP_CODE_ADC_RA )
+        {
+            uint32_t adc_voltage = answer.p_payload[0] ;
+            char str[ASTRONODE_UART_DEBUG_BUFFER_LENGTH];
+            sprintf(str, "3.3V rail voltage [mV]: %lds.", adc_voltage );
+            send_debug_logs(str);
+        }
+        else
+        {
+            send_debug_logs("Failed to read adc voltage.");
+        }
+    }
+}
+
 bool is_sak_available()
 {
     return g_is_sak_available;

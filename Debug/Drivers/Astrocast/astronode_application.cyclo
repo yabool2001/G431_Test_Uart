@@ -26,7 +26,9 @@
 ../Drivers/Astrocast/astronode_application.c:896:6:astronode_send_end_rr	8
 ../Drivers/Astrocast/astronode_application.c:942:6:astronode_send_cmd_cr	3
 ../Drivers/Astrocast/astronode_application.c:963:6:astronode_send_cmd_rr	7
-../Drivers/Astrocast/astronode_application.c:1010:6:is_sak_available	1
-../Drivers/Astrocast/astronode_application.c:1015:6:is_astronode_reset	1
-../Drivers/Astrocast/astronode_application.c:1020:6:is_command_available	1
-../Drivers/Astrocast/astronode_application.c:1025:6:is_tx_msg_pending	1
+../Drivers/Astrocast/astronode_application.c:1011:6:astronode_send_val_wr	3
+../Drivers/Astrocast/astronode_application.c:1034:6:astronode_send_adc_rr	3
+../Drivers/Astrocast/astronode_application.c:1058:6:is_sak_available	1
+../Drivers/Astrocast/astronode_application.c:1063:6:is_astronode_reset	1
+../Drivers/Astrocast/astronode_application.c:1068:6:is_command_available	1
+../Drivers/Astrocast/astronode_application.c:1073:6:is_tx_msg_pending	1

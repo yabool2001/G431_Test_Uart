@@ -81,6 +81,11 @@ typedef enum astronode_op_code
     ASTRONODE_OP_CODE_CMD_CR = 0x48,
     ASTRONODE_OP_CODE_CMD_RA = 0xc7,
     ASTRONODE_OP_CODE_CMD_RR = 0x47,
+	// Added by yabool2001 2023.09.10:
+	ASTRONODE_OP_CODE_VAL_WA = 0xE0,
+	ASTRONODE_OP_CODE_VAL_WR = 0x60,
+	ASTRONODE_OP_CODE_ADC_RA = 0xE4,
+	ASTRONODE_OP_CODE_ADC_RR = 0x64,
 } astronode_op_code;
 
 typedef enum astronode_error_code

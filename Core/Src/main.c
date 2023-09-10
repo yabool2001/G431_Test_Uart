@@ -53,8 +53,9 @@ UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
 uint16_t	g_payload_id_counter = 0 ;
-uint8_t		g_number_of_message_to_send = 0 ;
+uint8_t		g_number_of_message_to_send = 1 ;
 uint32_t	print_housekeeping_timer = 0 ;
+//uint32_t	current_housekeeping_timer = 0 ;
 HAL_StatusTypeDef result = HAL_ERROR ; // HAL_OK = 0x00, HAL_ERROR = 0x01, HAL_BUSY = 0x02, HAL_TIMEOUT = 0x03
 GPIO_PinState astro_reset_state = GPIO_PIN_SET ; //GPIO_PIN_RESET = 0U, GPIO_PIN_SET
 GPIO_PinState astro_event_state = GPIO_PIN_SET ; //GPIO_PIN_RESET = 0U, GPIO_PIN_SET
@@ -115,16 +116,45 @@ int main(void)
   /* USER CODE BEGIN 2 */
   send_debug_logs ( "\nStart the application." ) ;
   send_debug_logs ( "\nW produkcji nie zmieniaj MCU ani przyporzadkowania pinow PA9-12.\n" ) ;
+
+  /*
+  astronode_send_val_wr () ;
+    [2023-09-10 14:40:45.933] Message sent to the Astronode -->
+	[2023-09-10 14:40:45.934] 60568D
+	[2023-09-10 14:40:47.821] ERROR : Received answer timeout..
+	[2023-09-10 14:40:47.827]
+  send_debug_logs ( "\nRead voltage." ) ;
+  astronode_send_adc_rr () ;
+	[2023-09-10 14:40:47.827] Read voltage.
+	[2023-09-10 14:40:47.827] Message sent to the Astronode -->
+	[2023-09-10 14:40:47.829] 64D2CD
+	[2023-09-10 14:40:47.851] Message received from the Astronode <--
+	[2023-09-10 14:40:47.855] FF21010926
+	[2023-09-10 14:40:47.857] [ERROR] OPCODE_NOT_VALID : Invalid operation code used.
+	[2023-09-10 14:40:47.862] Failed to read adc voltage.*/
+
+  // A reset will cause exit Validation mode.
   reset_astronode () ;
 
   print_housekeeping_timer = get_systick () ;
 
   //HAL_Delay ( 1000 ) ;
+
+  // Send config write with:
+  // EVT pin shows sat ack
+  // No geolocation
+  // Ephemeris Enable
+  // Deep Sleep not used
+  // EVT pin shows Message Ack
+  // EVT pin shows Reset
+  // EVT pin shows downlink command available
+  // EVT pin did not show tx message pending (keep it to false in this example)
   astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
   //astronode_send_cfg_wr ( true , false , true , false , true , true , true , false ) ;
   astronode_send_cfg_sr () ;
   astronode_send_mpn_rr () ;
   astronode_send_msn_rr () ;
+  astronode_send_mgi_rr () ;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -160,6 +190,7 @@ int main(void)
 	  else if ( is_message_available () )
 	  {
 		  send_debug_logs ( "The button is pressed." ) ;
+		  astronode_send_pld_fr () ;
 
 		  g_payload_id_counter++;
 		  char payload[ASTRONODE_APP_PAYLOAD_MAX_LEN_BYTES] = {0};
@@ -168,11 +199,15 @@ int main(void)
 
 		  astronode_send_pld_er ( g_payload_id_counter , payload , strlen ( payload ) ) ;
 	  }
-
-	  if ( get_systick () - print_housekeeping_timer > 1800000 /*60000*/ )
+	  //current_housekeeping_timer = get_systick () ;
+	  if ( get_systick () - print_housekeeping_timer >  900000  /* 15 min. */ /* 60000 */ /*1 min. */ )
 	  {
 		  g_number_of_message_to_send++ ;
 		  send_debug_logs("g_number_of_message_to_send++");
+		  astronode_send_rtc_rr ();
+		  astronode_send_nco_rr () ;
+		  astronode_send_lcd_rr () ;
+		  astronode_send_end_rr () ;
 		  astronode_send_per_rr () ;
 		  print_housekeeping_timer = get_systick () ;
 	  }
