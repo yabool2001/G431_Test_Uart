@@ -1,0 +1,279 @@
+
+[2023-09-16 10:24:08.793] g_number_of_message_to_send++
+[2023-09-16 10:24:08.802] Message sent to the Astronode --> 
+[2023-09-16 10:24:08.809] 172683
+[2023-09-16 10:24:08.825] Message received from the Astronode <-- 
+[2023-09-16 10:24:08.842] 97000000005250
+[2023-09-16 10:24:08.842] RTC time since Astrocast Epoch (2018-01-01 00:00:00 UTC): 0s.
+[2023-09-16 10:24:08.844] Message sent to the Astronode --> 
+[2023-09-16 10:24:08.844] 18C972
+[2023-09-16 10:24:08.864] Message received from the Astronode <-- 
+[2023-09-16 10:24:08.873] 9800000000AB35
+[2023-09-16 10:24:08.873] Next opportunity for communication with the Astrocast Network: 0s.
+[2023-09-16 10:24:08.880] Message sent to the Astronode --> 
+[2023-09-16 10:24:08.880] 6A1C2C
+[2023-09-16 10:24:08.937] Message received from the Astronode <-- 
+[2023-09-16 10:24:08.951] EA51040000000052040000000053010054040000000038C4
+[2023-09-16 10:24:08.958] Time of start of last pass contact is: 
+[2023-09-16 10:24:08.965] 0
+[2023-09-16 10:24:08.965] Time of end of last pass contact is: 
+[2023-09-16 10:24:08.965] 0
+[2023-09-16 10:24:08.965] Peak RSSI of last pass is: 
+[2023-09-16 10:24:08.965] 0
+[2023-09-16 10:24:08.965] Time of peak RSSI in last pass contact is: 
+[2023-09-16 10:24:08.971] 0
+[2023-09-16 10:24:08.971] Message sent to the Astronode --> 
+[2023-09-16 10:24:08.971] 6B3D3C
+[2023-09-16 10:24:09.006] Message received from the Astronode <-- 
+[2023-09-16 10:24:09.020] EB61010262010063040D00000054C0
+[2023-09-16 10:24:09.027] PC Last MAC Result is: 
+[2023-09-16 10:24:09.027] 2
+[2023-09-16 10:24:09.027] PC Last satellite search peak RSSI is: 
+[2023-09-16 10:24:09.035] 0
+[2023-09-16 10:24:09.035] PC Time since last satellite search is: 
+[2023-09-16 10:24:09.035] 13
+[2023-09-16 10:24:09.035] Message sent to the Astronode --> 
+[2023-09-16 10:24:09.036] 67B1FD
+[2023-09-16 10:24:09.226] Message received from the Astronode <-- 
+[2023-09-16 10:24:09.234] E70104110000000204220000000304010000000404040000000504000000000604000000000704000000000804010000000904000000000A04000000000B04000000000C04000000000D04000000000E0400000000BD5B
+[2023-09-16 10:24:09.249] PC sat det phase count is: 
+[2023-09-16 10:24:09.256] 17
+[2023-09-16 10:24:09.256] PC sat det operation count is: 
+[2023-09-16 10:24:09.256] 34
+[2023-09-16 10:24:09.256] PC signalling demod phase count is: 
+[2023-09-16 10:24:09.256] 1
+[2023-09-16 10:24:09.256] PC signalling demod attemps count is: 
+[2023-09-16 10:24:09.271] 4
+[2023-09-16 10:24:09.271] PC signalling demod successes count is: 
+[2023-09-16 10:24:09.271] 0
+[2023-09-16 10:24:09.271] PC ack demod attemps count is: 
+[2023-09-16 10:24:09.281] 0
+[2023-09-16 10:24:09.281] PC ack demod success count is: 
+[2023-09-16 10:24:09.281] 0
+[2023-09-16 10:24:09.281] PC queued message count is: 
+[2023-09-16 10:24:09.281] 1
+[2023-09-16 10:24:09.281] PC dequeued unacked message count is: 
+[2023-09-16 10:24:09.281] 0
+[2023-09-16 10:24:09.281] PC acked message count is: 
+[2023-09-16 10:24:09.281] 0
+[2023-09-16 10:24:09.281] PC sent frag count is: 
+[2023-09-16 10:24:09.289] 0
+[2023-09-16 10:24:09.289] PC ack frag count is: 
+[2023-09-16 10:24:09.289] 0
+[2023-09-16 10:24:09.289] PC unicast demod attempt count is: 
+[2023-09-16 10:24:09.289] 0
+[2023-09-16 10:24:09.289] PC unicast demod success count is: 
+[2023-09-16 10:24:09.291] 0
+[2023-09-16 10:24:09.291] The button is pressed.
+[2023-09-16 10:24:09.291] Message sent to the Astronode --> 
+[2023-09-16 10:24:09.291] 2775B5
+[2023-09-16 10:24:09.301] Message received from the Astronode <-- 
+[2023-09-16 10:24:09.316] A7FD24
+[2023-09-16 10:24:09.316] Entire payload queue has been cleared.
+[2023-09-16 10:24:09.326] Message sent to the Astronode --> 
+[2023-09-16 10:24:09.326] 250200547361744D6573736167652032E80D
+[2023-09-16 10:24:09.365] Message received from the Astronode <-- 
+[2023-09-16 10:24:09.382] A5020092FC
+[2023-09-16 10:24:09.382] Payload was successfully queued.
+[2023-09-16 10:29:09.146] g_number_of_message_to_send++
+[2023-09-16 10:29:09.156] Message sent to the Astronode --> 
+[2023-09-16 10:29:09.156] 172683
+[2023-09-16 10:29:09.159] Message received from the Astronode <-- 
+[2023-09-16 10:29:09.159] 97000000005250
+[2023-09-16 10:29:09.159] RTC time since Astrocast Epoch (2018-01-01 00:00:00 UTC): 0s.
+[2023-09-16 10:29:09.175] Message sent to the Astronode --> 
+[2023-09-16 10:29:09.175] 18C972
+[2023-09-16 10:29:09.190] Message received from the Astronode <-- 
+[2023-09-16 10:29:09.222] 9800000000AB35
+[2023-09-16 10:29:09.222] Next opportunity for communication with the Astrocast Network: 0s.
+[2023-09-16 10:29:09.223] Message sent to the Astronode --> 
+[2023-09-16 10:29:09.223] 6A1C2C
+[2023-09-16 10:29:09.269] Message received from the Astronode <-- 
+[2023-09-16 10:29:09.284] EA51040000000052040000000053010054040000000038C4
+[2023-09-16 10:29:09.297] Time of start of last pass contact is: 
+[2023-09-16 10:29:09.307] 0
+[2023-09-16 10:29:09.307] Time of end of last pass contact is: 
+[2023-09-16 10:29:09.307] 0
+[2023-09-16 10:29:09.307] Peak RSSI of last pass is: 
+[2023-09-16 10:29:09.307] 0
+[2023-09-16 10:29:09.307] Time of peak RSSI in last pass contact is: 
+[2023-09-16 10:29:09.307] 0
+[2023-09-16 10:29:09.307] Message sent to the Astronode --> 
+[2023-09-16 10:29:09.316] 6B3D3C
+[2023-09-16 10:29:09.332] Message received from the Astronode <-- 
+[2023-09-16 10:29:09.351] EB610102620101630409000000C4B2
+[2023-09-16 10:29:09.351] PC Last MAC Result is: 
+[2023-09-16 10:29:09.351] 2
+[2023-09-16 10:29:09.351] PC Last satellite search peak RSSI is: 
+[2023-09-16 10:29:09.365] 1
+[2023-09-16 10:29:09.365] PC Time since last satellite search is: 
+[2023-09-16 10:29:09.376] 9
+[2023-09-16 10:29:09.376] Message sent to the Astronode --> 
+[2023-09-16 10:29:09.376] 67B1FD
+[2023-09-16 10:29:09.555] Message received from the Astronode <-- 
+[2023-09-16 10:29:09.567] E70104220000000204440000000304020000000404060000000504000000000604000000000704000000000804020000000904010000000A04000000000B04000000000C04000000000D04000000000E04000000007729
+[2023-09-16 10:29:09.587] PC sat det phase count is: 
+[2023-09-16 10:29:09.587] 34
+[2023-09-16 10:29:09.587] PC sat det operation count is: 
+[2023-09-16 10:29:09.587] 68
+[2023-09-16 10:29:09.587] PC signalling demod phase count is: 
+[2023-09-16 10:29:09.587] 2
+[2023-09-16 10:29:09.587] PC signalling demod attemps count is: 
+[2023-09-16 10:29:09.587] 6
+[2023-09-16 10:29:09.587] PC signalling demod successes count is: 
+[2023-09-16 10:29:09.607] 0
+[2023-09-16 10:29:09.607] PC ack demod attemps count is: 
+[2023-09-16 10:29:09.607] 0
+[2023-09-16 10:29:09.607] PC ack demod success count is: 
+[2023-09-16 10:29:09.607] 0
+[2023-09-16 10:29:09.607] PC queued message count is: 
+[2023-09-16 10:29:09.607] 2
+[2023-09-16 10:29:09.607] PC dequeued unacked message count is: 
+[2023-09-16 10:29:09.607] 1
+[2023-09-16 10:29:09.607] PC acked message count is: 
+[2023-09-16 10:29:09.607] 0
+[2023-09-16 10:29:09.607] PC sent frag count is: 
+[2023-09-16 10:29:09.607] 0
+[2023-09-16 10:29:09.607] PC ack frag count is: 
+[2023-09-16 10:29:09.607] 0
+[2023-09-16 10:29:09.618] PC unicast demod attempt count is: 
+[2023-09-16 10:29:09.618] 0
+[2023-09-16 10:29:09.618] PC unicast demod success count is: 
+[2023-09-16 10:29:09.633] 0
+[2023-09-16 10:29:09.633] The button is pressed.
+[2023-09-16 10:29:09.633] Message sent to the Astronode --> 
+[2023-09-16 10:29:09.633] 2775B5
+[2023-09-16 10:29:09.633] Message received from the Astronode <-- 
+[2023-09-16 10:29:09.650] A7FD24
+[2023-09-16 10:29:09.650] Entire payload queue has been cleared.
+[2023-09-16 10:29:09.650] Message sent to the Astronode --> 
+[2023-09-16 10:29:09.650] 250300547361744D657373616765203335B3
+[2023-09-16 10:29:09.710] Message received from the Astronode <-- 
+[2023-09-16 10:29:09.730] A50300A3CF
+[2023-09-16 10:29:09.730] Payload was successfully queued.
+[2023-09-16 10:32:10.630] Evt pin is high.
+[2023-09-16 10:32:10.649] Message sent to the Astronode --> 
+[2023-09-16 10:32:10.649] 65F3DD
+[2023-09-16 10:32:10.649] Message received from the Astronode <-- 
+[2023-09-16 10:32:10.661] E50169E2
+[2023-09-16 10:32:10.661] Message acknowledgment available.
+[2023-09-16 10:32:10.661] Message sent to the Astronode --> 
+[2023-09-16 10:32:10.661] 4591F9
+[2023-09-16 10:32:10.685] Message received from the Astronode <-- 
+[2023-09-16 10:32:10.698] C50300C854
+[2023-09-16 10:32:10.698] Acknowledgment for payload 3 is available.
+[2023-09-16 10:32:10.705] Message sent to the Astronode --> 
+[2023-09-16 10:32:10.705] 46F2C9
+[2023-09-16 10:32:10.709] Message received from the Astronode <-- 
+[2023-09-16 10:32:10.735] C67A58
+[2023-09-16 10:32:10.735] The acknowledgment has been cleared.
+[2023-09-16 10:32:10.735] Message has been acknowledged.
+[2023-09-16 10:32:10.741] Message sent to the Astronode --> 
+[2023-09-16 10:32:10.741] 67B1FD
+[2023-09-16 10:32:10.920] Message received from the Astronode <-- 
+[2023-09-16 10:32:10.933] E701042D00000002045900000003040400000004040A0000000504020000000604010000000704010000000804030000000904020000000A04010000000B04020000000C04020000000D04000000000E0400000000CA77
+[2023-09-16 10:32:10.949] PC sat det phase count is: 
+[2023-09-16 10:32:10.949] 45
+[2023-09-16 10:32:10.949] PC sat det operation count is: 
+[2023-09-16 10:32:10.968] 89
+[2023-09-16 10:32:10.968] PC signalling demod phase count is: 
+[2023-09-16 10:32:10.968] 4
+[2023-09-16 10:32:10.968] PC signalling demod attemps count is: 
+[2023-09-16 10:32:10.968] 10
+[2023-09-16 10:32:10.968] PC signalling demod successes count is: 
+[2023-09-16 10:32:10.973] 2
+[2023-09-16 10:32:10.973] PC ack demod attemps count is: 
+[2023-09-16 10:32:10.973] 1
+[2023-09-16 10:32:10.973] PC ack demod success count is: 
+[2023-09-16 10:32:10.973] 1
+[2023-09-16 10:32:10.973] PC queued message count is: 
+[2023-09-16 10:32:10.973] 3
+[2023-09-16 10:32:10.973] PC dequeued unacked message count is: 
+[2023-09-16 10:32:10.977] 2
+[2023-09-16 10:32:10.977] PC acked message count is: 
+[2023-09-16 10:32:10.977] 1
+[2023-09-16 10:32:10.977] PC sent frag count is: 
+[2023-09-16 10:32:10.979] 2
+[2023-09-16 10:32:10.979] PC ack frag count is: 
+[2023-09-16 10:32:10.979] 2
+[2023-09-16 10:32:10.979] PC unicast demod attempt count is: 
+[2023-09-16 10:32:10.985] 0
+[2023-09-16 10:32:10.985] PC unicast demod success count is: 
+[2023-09-16 10:32:10.985] 0
+[2023-09-16 10:34:09.473] g_number_of_message_to_send++
+[2023-09-16 10:34:09.490] Message sent to the Astronode --> 
+[2023-09-16 10:34:09.497] 172683
+[2023-09-16 10:34:09.500] Message received from the Astronode <-- 
+[2023-09-16 10:34:09.514] 9777EEBB0A879B
+[2023-09-16 10:34:09.514] RTC time since Astrocast Epoch (2018-01-01 00:00:00 UTC): 180088439s.
+[2023-09-16 10:34:09.522] Message sent to the Astronode --> 
+[2023-09-16 10:34:09.528] 18C972
+[2023-09-16 10:34:09.533] Message received from the Astronode <-- 
+[2023-09-16 10:34:09.548] 9800000000AB35
+[2023-09-16 10:34:09.548] Next opportunity for communication with the Astrocast Network: 0s.
+[2023-09-16 10:34:09.566] Message sent to the Astronode --> 
+[2023-09-16 10:34:09.567] 6A1C2C
+[2023-09-16 10:34:09.611] Message received from the Astronode <-- 
+[2023-09-16 10:34:09.630] EA5104F6EDBB0A5204F8EDBB0A5301095404F6EDBB0A36F7
+[2023-09-16 10:34:09.636] Time of start of last pass contact is: 
+[2023-09-16 10:34:09.636] 180088310
+[2023-09-16 10:34:09.636] Time of end of last pass contact is: 
+[2023-09-16 10:34:09.643] 180088312
+[2023-09-16 10:34:09.643] Peak RSSI of last pass is: 
+[2023-09-16 10:34:09.647] 9
+[2023-09-16 10:34:09.647] Time of peak RSSI in last pass contact is: 
+[2023-09-16 10:34:09.647] 180088310
+[2023-09-16 10:34:09.647] Message sent to the Astronode --> 
+[2023-09-16 10:34:09.657] 6B3D3C
+[2023-09-16 10:34:09.693] Message received from the Astronode <-- 
+[2023-09-16 10:34:09.698] EB610101620109630480000000E9BE
+[2023-09-16 10:34:09.703] PC Last MAC Result is: 
+[2023-09-16 10:34:09.703] 1
+[2023-09-16 10:34:09.703] PC Last satellite search peak RSSI is: 
+[2023-09-16 10:34:09.707] 9
+[2023-09-16 10:34:09.707] PC Time since last satellite search is: 
+[2023-09-16 10:34:09.711] 128
+[2023-09-16 10:34:09.711] Message sent to the Astronode --> 
+[2023-09-16 10:34:09.715] 67B1FD
+[2023-09-16 10:34:09.898] Message received from the Astronode <-- 
+[2023-09-16 10:34:09.915] E701042D00000002045900000003040400000004040A0000000504020000000604010000000704010000000804030000000904020000000A04010000000B04020000000C04020000000D04000000000E0400000000CA77
+[2023-09-16 10:34:09.931] PC sat det phase count is: 
+[2023-09-16 10:34:09.931] 45
+[2023-09-16 10:34:09.931] PC sat det operation count is: 
+[2023-09-16 10:34:09.946] 89
+[2023-09-16 10:34:09.946] PC signalling demod phase count is: 
+[2023-09-16 10:34:09.946] 4
+[2023-09-16 10:34:09.946] PC signalling demod attemps count is: 
+[2023-09-16 10:34:09.946] 10
+[2023-09-16 10:34:09.946] PC signalling demod successes count is: 
+[2023-09-16 10:34:09.949] 2
+[2023-09-16 10:34:09.949] PC ack demod attemps count is: 
+[2023-09-16 10:34:09.949] 1
+[2023-09-16 10:34:09.949] PC ack demod success count is: 
+[2023-09-16 10:34:09.949] 1
+[2023-09-16 10:34:09.949] PC queued message count is: 
+[2023-09-16 10:34:09.949] 3
+[2023-09-16 10:34:09.949] PC dequeued unacked message count is: 
+[2023-09-16 10:34:09.964] 2
+[2023-09-16 10:34:09.964] PC acked message count is: 
+[2023-09-16 10:34:09.964] 1
+[2023-09-16 10:34:09.964] PC sent frag count is: 
+[2023-09-16 10:34:09.964] 2
+[2023-09-16 10:34:09.964] PC ack frag count is: 
+[2023-09-16 10:34:09.964] 2
+[2023-09-16 10:34:09.964] PC unicast demod attempt count is: 
+[2023-09-16 10:34:09.978] 0
+[2023-09-16 10:34:09.978] PC unicast demod success count is: 
+[2023-09-16 10:34:09.978] 0
+[2023-09-16 10:34:09.978] The button is pressed.
+[2023-09-16 10:34:09.978] Message sent to the Astronode --> 
+[2023-09-16 10:34:09.980] 2775B5
+[2023-09-16 10:34:10.001] Message received from the Astronode <-- 
+[2023-09-16 10:34:10.009] FF01266A74
+[2023-09-16 10:34:10.009] [ERROR] BUFFER_EMPTY : Failed to dequeue a payload from the buffer because the buffer is empty.
+[2023-09-16 10:34:10.009] Failed to clear the payload queue.
+[2023-09-16 10:34:10.009] Message sent to the Astronode --> 
+[2023-09-16 10:34:10.024] 250400547361744D657373616765203445BB
+[2023-09-16 10:34:10.072] Message received from the Astronode <-- 
+[2023-09-16 10:34:10.075] A504003456
+[2023-09-16 10:34:10.075] Payload was successfully queued.
