@@ -48,10 +48,13 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+RTC_HandleTypeDef hrtc;
+
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+uint32_t 	message_timer = 300000  /* 5 min.  900000  15 min.  60000  1 min. */ ;
 uint16_t	g_payload_id_counter = 0 ;
 uint8_t		g_number_of_message_to_send = 1 ;
 uint32_t	print_housekeeping_timer = 0 ;
@@ -60,6 +63,11 @@ HAL_StatusTypeDef result = HAL_ERROR ; // HAL_OK = 0x00, HAL_ERROR = 0x01, HAL_B
 GPIO_PinState astro_reset_state = GPIO_PIN_SET ; //GPIO_PIN_RESET = 0U, GPIO_PIN_SET
 GPIO_PinState astro_event_state = GPIO_PIN_SET ; //GPIO_PIN_RESET = 0U, GPIO_PIN_SET
 char payload[ASTRONODE_APP_PAYLOAD_MAX_LEN_BYTES] = {0};
+
+RTC_TimeTypeDef sTime ;
+RTC_DateTypeDef sDate ;
+RTC_AlarmTypeDef sAlarm ;
+char buffer[16] ;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -67,6 +75,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_RTC_Init(void);
 /* USER CODE BEGIN PFP */
 void send_debug_logs ( char* ) ;
 void reset_astronode ( void ) ;
@@ -113,6 +122,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_USART1_UART_Init();
+  MX_RTC_Init();
   /* USER CODE BEGIN 2 */
   send_debug_logs ( "\nStart the application." ) ;
   send_debug_logs ( "\nW produkcji nie zmieniaj MCU ani przyporzadkowania pinow PA9-12.\n" ) ;
@@ -200,7 +210,7 @@ int main(void)
 		  astronode_send_pld_er ( g_payload_id_counter , payload , strlen ( payload ) ) ;
 	  }
 	  //current_housekeeping_timer = get_systick () ;
-	  if ( get_systick () - print_housekeeping_timer >  900000  /* 15 min. */ /* 60000 */ /*1 min. */ )
+	  if ( get_systick () - print_housekeeping_timer >  message_timer )
 	  {
 		  g_number_of_message_to_send++ ;
 		  send_debug_logs("g_number_of_message_to_send++");
@@ -211,6 +221,15 @@ int main(void)
 		  astronode_send_per_rr () ;
 		  print_housekeeping_timer = get_systick () ;
 	  }
+	  //HAL_RTC_GetTime ( &hrtc , &sTime , RTC_FORMAT_BIN ) ;
+	  //HAL_RTC_GetDate ( &hrtc , &sDate , RTC_FORMAT_BIN ) ;
+	  //HAL_StatusTypeDef al = HAL_RTC_GetAlarm ( &hrtc , &sAlarm , RTC_ALARM_A , RTC_FORMAT_BIN ) ;
+	  //send_debug_logs ( "\nHAL_RTCEx_AlarmAEventCallback1" ) ;
+	  //HAL_SuspendTick () ;
+	  //HAL_PWREx_EnterSTOP0Mode ( PWR_STOPENTRY_WFE ) ;
+	  //SystemClock_Config () ;
+	  //HAL_ResumeTick () ;
+	  //HAL_PWR_EnterSTANDBYMode () ;
 
     /* USER CODE END WHILE */
 
@@ -235,9 +254,10 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV4;
@@ -263,6 +283,89 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief RTC Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_RTC_Init(void)
+{
+
+  /* USER CODE BEGIN RTC_Init 0 */
+
+  /* USER CODE END RTC_Init 0 */
+
+  RTC_TimeTypeDef sTime = {0};
+  RTC_DateTypeDef sDate = {0};
+  RTC_AlarmTypeDef sAlarm = {0};
+
+  /* USER CODE BEGIN RTC_Init 1 */
+
+  /* USER CODE END RTC_Init 1 */
+
+  /** Initialize RTC Only
+  */
+  hrtc.Instance = RTC;
+  hrtc.Init.HourFormat = RTC_HOURFORMAT_24;
+  hrtc.Init.AsynchPrediv = 127;
+  hrtc.Init.SynchPrediv = 255;
+  hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
+  hrtc.Init.OutPutRemap = RTC_OUTPUT_REMAP_NONE;
+  hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
+  hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
+  hrtc.Init.OutPutPullUp = RTC_OUTPUT_PULLUP_NONE;
+  if (HAL_RTC_Init(&hrtc) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /* USER CODE BEGIN Check_RTC_BKUP */
+
+  /* USER CODE END Check_RTC_BKUP */
+
+  /** Initialize RTC and set the Time and Date
+  */
+  sTime.Hours = 23;
+  sTime.Minutes = 59;
+  sTime.Seconds = 50;
+  sTime.SubSeconds = 0;
+  sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+  if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sDate.WeekDay = RTC_WEEKDAY_WEDNESDAY;
+  sDate.Month = RTC_MONTH_SEPTEMBER;
+  sDate.Date = 13;
+  sDate.Year = 23;
+  if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Enable the Alarm A
+  */
+  sAlarm.AlarmTime.Hours = 0;
+  sAlarm.AlarmTime.Minutes = 0;
+  sAlarm.AlarmTime.Seconds = 11;
+  sAlarm.AlarmTime.SubSeconds = 0;
+  sAlarm.AlarmMask = RTC_ALARMMASK_DATEWEEKDAY|RTC_ALARMMASK_HOURS
+                              |RTC_ALARMMASK_MINUTES;
+  sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_ALL;
+  sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_DATE;
+  sAlarm.AlarmDateWeekDay = 14;
+  sAlarm.Alarm = RTC_ALARM_A;
+  if (HAL_RTC_SetAlarm(&hrtc, &sAlarm, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN RTC_Init 2 */
+
+  /* USER CODE END RTC_Init 2 */
+
 }
 
 /**
@@ -462,6 +565,15 @@ bool is_message_available ( void )
         return false;
     }
 }
+void HAL_RTCEx_AlarmAEventCallback (RTC_HandleTypeDef *hrtc)
+{
+	send_debug_logs ( "\n\nHAL_RTCEx_AlarmAEventCallback" ) ;
+}
+void HAL_RTC_AlarmAEventCallback (RTC_HandleTypeDef *hrtc)
+{
+	send_debug_logs ( "\n\nHAL_RTC_AlarmAEventCallback" ) ;
+}
+
 /* USER CODE END 4 */
 
 /**
