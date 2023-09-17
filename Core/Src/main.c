@@ -25,6 +25,7 @@
 #include <string.h>
 #include <astronode_definitions.h>
 #include <astronode_application.h>
+#include "my_rtc_g431.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -127,28 +128,14 @@ int main(void)
   send_debug_logs ( "\nStart the application." ) ;
   send_debug_logs ( "\nW produkcji nie zmieniaj MCU ani przyporzadkowania pinow PA9-12.\n" ) ;
 
-  /*
-  astronode_send_val_wr () ;
-    [2023-09-10 14:40:45.933] Message sent to the Astronode -->
-	[2023-09-10 14:40:45.934] 60568D
-	[2023-09-10 14:40:47.821] ERROR : Received answer timeout..
-	[2023-09-10 14:40:47.827]
-  send_debug_logs ( "\nRead voltage." ) ;
-  astronode_send_adc_rr () ;
-	[2023-09-10 14:40:47.827] Read voltage.
-	[2023-09-10 14:40:47.827] Message sent to the Astronode -->
-	[2023-09-10 14:40:47.829] 64D2CD
-	[2023-09-10 14:40:47.851] Message received from the Astronode <--
-	[2023-09-10 14:40:47.855] FF21010926
-	[2023-09-10 14:40:47.857] [ERROR] OPCODE_NOT_VALID : Invalid operation code used.
-	[2023-09-10 14:40:47.862] Failed to read adc voltage.*/
+  // Set the time to 09:00:00 and the date to 2023-09-30 (Saturday)
+  set_rtc_time ( 0x09 , 0x00 , 0x00 , 0x06 , 0x09 , 0x30 , 0x23 ) ;
+  get_rtc_time () ;
 
   // A reset will cause exit Validation mode.
   reset_astronode () ;
 
   print_housekeeping_timer = get_systick () ;
-
-  //HAL_Delay ( 1000 ) ;
 
   // Send config write with:
   // EVT pin shows sat ack
@@ -565,14 +552,7 @@ bool is_message_available ( void )
         return false;
     }
 }
-void HAL_RTCEx_AlarmAEventCallback (RTC_HandleTypeDef *hrtc)
-{
-	send_debug_logs ( "\n\nHAL_RTCEx_AlarmAEventCallback" ) ;
-}
-void HAL_RTC_AlarmAEventCallback (RTC_HandleTypeDef *hrtc)
-{
-	send_debug_logs ( "\n\nHAL_RTC_AlarmAEventCallback" ) ;
-}
+
 
 /* USER CODE END 4 */
 

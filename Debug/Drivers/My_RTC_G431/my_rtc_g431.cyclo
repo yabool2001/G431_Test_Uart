@@ -1,0 +1,4 @@
+../Drivers/My_RTC_G431/my_rtc_g431.c:12:6:set_rtc_time	1
+../Drivers/My_RTC_G431/my_rtc_g431.c:40:6:get_rtc_time	1
+../Drivers/My_RTC_G431/my_rtc_g431.c:56:6:set_rtc_alarm	1
+../Drivers/My_RTC_G431/my_rtc_g431.c:77:6:HAL_RTC_AlarmAEventCallback	1

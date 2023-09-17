@@ -25,5 +25,6 @@ SUBDIRS := \
 Core/Src \
 Core/Startup \
 Drivers/Astrocast \
+Drivers/My_RTC_G431 \
 Drivers/STM32G4xx_HAL_Driver/Src \
 
