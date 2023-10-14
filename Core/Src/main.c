@@ -55,7 +55,7 @@ UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-uint32_t 	message_timer = 300000  /* 5 min.  900000  15 min.  60000  1 min. */ ;
+uint32_t 	message_timer = 60000  /* 5 min.  900000  15 min.  60000  1 min. */ ;
 uint16_t	g_payload_id_counter = 0 ;
 uint8_t		g_number_of_message_to_send = 1 ;
 uint32_t	print_housekeeping_timer = 0 ;
